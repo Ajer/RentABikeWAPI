@@ -1,0 +1,58 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <form name="customerForm" role="form" class="form-horizontal" novalidate ng-submit="submit()">
+            <fieldset>
+                <legend>{{custFormHeader}}</legend>
+                <div class="form-group" ng-show="!isNew">
+                    <label for="customerId" class="col-md-2 control-label">Id</label>
+                    <div class="col-md-1">
+                        <input type="text" class="form-control" name="customerId" value="{{customer.id}}" disabled />
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': customerForm.firstName.$invalid}">
+                    <label for="firstName" class="col-md-2 control-label">First Name</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="firstName" placeholder="Enter first name here ..." required ng-model="customer.firstName">
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="customerForm.firstName.$error.required" class="help-block">Required</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': customerForm.lastName.$invalid}">
+                    <label for="lastName" class="col-md-2 control-label">Last Name</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="lastName" placeholder="Enter last name here ..." required ng-model="customer.lastName">
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="customerForm.lastName.$error.required" class="help-block">Required</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': customerForm.theEmail.$invalid}">
+                    <label for="theEmail" class="col-md-2 control-label">Email</label>
+                    <div class="col-md-4">
+                        <input type="email" class="form-control" name="theEmail" placeholder="Enter email ..." required ng-model="customer.email">
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="customerForm.theEmail.$error.required" class="help-block">Required</span>
+                        <span ng-show="customerForm.theEmail.$error.email" class="help-block">Wrongly formatted email</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="col-md-2 control-label">Phone</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="phone" placeholder="Enter phone nr ..." ng-model="customer.phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" ng-disabled="customerForm.$invalid" class="btn btn-primary">{{custFormHeader}}</button>
+                            <button type="button" ng-click="cancel()" class="btn btn-default">Cancel</button>
+                        </div>
+                </div>
+            </fieldset>
+       </form>
+    </div>
+</div>

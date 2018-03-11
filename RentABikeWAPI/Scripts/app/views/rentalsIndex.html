@@ -1,0 +1,48 @@
+﻿<div class="row-long red-header">
+    <div class="col-md-12">
+        <h3>Rentals</h3>
+    </div>
+</div>
+<div class="row-long app-header">
+    <div class="col-md-12">
+        <a class="btn btn-primary bicyc" role="button" href="#/rentals/new">Add new rental</a>  <!--role=button-->
+    </div>
+</div>
+<div class="row-long app-header">
+    <div class="col-md-12">
+        &nbsp;
+    </div>
+</div>
+<div class="row-long app-header">
+    <div class="col-md-12">
+        <table class="table table-long table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th><a href="#/rentals" ng-click="sorting('id')">Id</a><img id="img_rid" ng-src="{{id_im}}" /></th>
+                    <th><a href="#/rentals" ng-click="sorting('startDate')">Start Date</a><img id="img_stDate" ng-src="{{startD_im}}" /></th>
+                    <th><a href="#/rentals" ng-click="sorting('endDate')">End Date</a><img id="img_endDate" ng-src="{{endD_im}}" /></th>
+                    <th><a href="#/rentals" ng-click="sorting('name')">Bicycle Name</a><img id="img_rBicycName" ng-src="{{bName_im}}" /></th>
+                    <th><a href="#/rentals" ng-click="sorting('quantity')">Quantity</a><img id="img_rQuantity" ng-src="{{quantity_im}}" /></th>
+                    <th><a href="#/rentals" ng-click="sorting('totPrice')">Total Price</a><img id="img_totPrice" ng-src="{{totPrice_im}}" /></th>
+                    <th><a href="#/rentals" ng-click="sorting('paid')">Paid</a><img id="img_paid" ng-src="{{paid_im}}" /></th>
+                    <th><a href="#/rentals" ng-click="sorting('customer')">Customer</a><img id="img_customer" ng-src="{{customer_im}}" /></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="no-cond" ng-repeat="rental in rentals|orderBy:sortPar:reverse">
+                    <td>{{rental.id}}</td>
+                    <td>{{rental.startDate|date:'yyyy-MM-dd'}}</td>
+                    <td>{{rental.endDate|date:'yyyy-MM-dd'}}</td>
+                    <td>{{rental.bicycle.name}}</td>
+                    <td>{{rental.quantity}}</td>
+                    <td>{{rental.totPrice|currency}}</td>
+                    <td ng-class="{'rp': rental.paid,'nrp':!rental.paid}">{{rental.paid?'yes':'no'}}</td>
+                    <!--<td>{{test()}}</td>-->
+                    <td>{{rental.customer.firstName + ' ' + rental.customer.lastName}}</td>
+                    <td><a class="btn btn-primary btn-edit" href="#/rentals/{{rental.id}}/edit" role="button">Edit</a><a class="btn btn-primary btn-del" href="#/rentals" ng-click="delete(rental.id)">Del</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

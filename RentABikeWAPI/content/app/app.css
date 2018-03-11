@@ -1,0 +1,128 @@
+﻿/* AngularUI.Bootstrap required styles */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+.okRent
+{
+  background-color: #fff !important;  /*#c3efd9 !important;*/
+  color:black !important;
+}
+
+
+/*.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: white !important;
+}*/
+
+tbody .no-cond{
+   background-color: white !important;
+}
+
+
+.table-bordered {
+  border: 1px solid #000;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #000;
+}
+
+
+
+
+.btn.btn-primary.btn-edit,.btn.btn-primary.btn-today
+{
+  line-height: 0.5;
+  color: #fff;
+  background-color: #4c8a81 !important;
+  border-color: #2e6da4;
+}
+
+.btn.btn-primary.bicyc
+{
+    line-height: 0.7 !important;
+    font-size: 11px !important;
+    margin-top:10px;
+}
+
+.dg
+{
+  background-color:#eab8b8 !important;
+  color:black !important;
+}
+
+.btn.btn-primary.btn-edit.dg-dark
+{
+   line-height: 0.5;
+   color: #fff !important;
+   background-color:#993d3d !important;
+   border-color: #2e6da4;  
+}
+
+.btn.btn-primary.btn-del
+{
+   line-height: 0.5;
+   color: #fff !important;
+   background-color:#993d3d !important;
+   border-color: #2e6da4; 
+   margin-left:10px; 
+}
+
+.table th,.table a,.table a:hover,.table a:active,.table a:visited{
+    background-color:#6f6868 !important; /*#b3b3b3 !important;*/
+    text-decoration:none !important;
+    color:#fff !important;
+ }
+
+img{
+    margin-left:5px;
+}
+
+.app-header{
+    background-color:#ababab !important;
+}
+
+.blue-header{
+    background-color:#1b3885;
+}
+
+.green-header{
+    background-color:green;
+}
+
+.red-header{
+    background-color:darkred;
+}
+
+.row.green-header h3,.row.blue-header h3,.row-long.red-header h3{
+    color:white;
+}
+
+.row-long {
+  width:110%;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.row-long:before,.row-long:after{
+        display: table;
+        content: " ";
+}
+.row-long:after{
+    clear:both;
+}
+
+.rp
+{
+  background-color:#96CD9E !important;  /*#c3efd9 !important;*/
+  color:black !important;
+}
+
+.nrp
+{
+  background-color:#eab8b8 !important;  /*#c3efd9 !important;*/
+  color:black !important;
+}

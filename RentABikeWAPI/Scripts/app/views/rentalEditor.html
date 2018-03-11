@@ -1,0 +1,96 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <form name="rentalForm" role="form" class="form-horizontal" novalidate ng-submit="submit()">
+            <fieldset>
+                <legend>{{rentFormHeader}}</legend>
+                <div class="form-group" ng-show="!isNew">
+                    <label for="inputId" class="col-md-2 control-label">Id</label>
+                    <div class="col-md-1">
+                        <input type="text" class="form-control" name="inputId" value="{{rental.id}}" disabled />
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': rentalForm.startDate.$invalid}">
+                    <label for="startDate" class="col-md-2 control-label">Start Date</label>
+                    <div class="col-md-4">
+                        <input type="date" id="startDate" class="form-control" name="startDate" placeholder="Enter rental start date (YYYY-MM-dd) here ..." required ng-model="rental.startDate" ng-change="updateTotalPrice()">
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="rentalForm.startDate.$error.required" class="help-block">Required</span>
+                        <span ng-show="rentalForm.startDate.$error.date" class="help-block">Not a valid date</span>
+                    </div>
+                    <button type="button" ng-click="setToday()" class="btn btn-primary btn-today">Today</button>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': rentalForm.endDate.$invalid}">
+                    <label for="endDate" class="col-md-2 control-label">End Date</label>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control" name="endDate" placeholder="Enter rental end date (YYYY-MM-dd) here ..." required ng-model="rental.endDate" ng-change="updateTotalPrice()">
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="rentalForm.endDate.$error.required" class="help-block">Required</span>
+                        <span ng-show="rentalForm.endDate.$error.date" class="help-block">Not a valid date</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': rentalForm.selectName.$invalid}">
+                    <label for="selectName" class="col-md-2 control-label">Bicycle</label>
+                    <div class="col-md-4">
+                        <select class="form-control" name="selectName" required ng-model="rental.bicycleId" ng-options="bicycle.id as bicycle.name for bicycle in bicycles" ng-change="updateBicycle()">
+                            <!--|filter:greaterThan(0)-->
+                            <option value="">Please select a bicycle name ...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="rentalForm.selectName.$error.required" class="help-block">Required</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': rentalForm.selectCustomer.$invalid}">
+                    <label for="selectCustomer" class="col-md-2 control-label">Customer</label>
+                    <div class="col-md-4">
+                        <select class="form-control" name="selectCustomer" required ng-model="rental.customerId" ng-options="customer.id as customer.firstName + ' ' + customer.lastName for customer in customers">
+                            <option value="">Please select a customer ...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="rentalForm.selectCustomer.$error.required" class="help-block">Required</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': rentalForm.inputQuantity.$invalid}">
+                    <label for="inputQuantity" class="col-md-2 control-label">Quantity</label>
+                    <div class="col-md-1">
+                        <input type="number" class="form-control" name="inputQuantity" required ng-model="rental.quantity" min="1" ng-change="updateTotalPrice()">
+                    </div>
+                    <div class="col-md-2">
+                        <span ng-show="rentalForm.inputQuantity.$error.required" class="help-block">Required</span>
+                        <span ng-show="rentalForm.inputQuantity.$error.min" class="help-block">The value needs to be greater than 0.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputTotPrice" class="col-md-2 control-label">Total Price</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" name="inputTotPrice" value="{{rental.totPrice}}" ng-model="rental.totPrice" disabled />
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': rentalForm.inputPaid.$invalid}">
+                    <div class="col-md-offset-2 col-md-1">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="inputPaid" ng-model="rental.paid"> Paid
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" ng-disabled="rentalForm.$invalid" class="btn btn-primary">{{rentFormHeader}}</button>
+                        <button type="button" ng-click="cancel()" class="btn btn-default">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+       </form>
+    </div>
+</div>

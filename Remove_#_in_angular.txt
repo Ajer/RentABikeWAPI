@@ -1,0 +1,43 @@
+
+1) Include url-rewriting by adding following in web.config.
+
+<system.webServer>
+<rewrite>
+      <rules>
+        <rule name="hjhj" enabled="true" stopProcessing="true">   
+          <match url="^api/.*" />
+          <conditions logicalGrouping="MatchAll">
+          </conditions>
+          <action type="None"  />
+        </rule>
+        <rule name="AngularJS" stopProcessing="true">
+          <match url=".*" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+          </conditions>
+          <action type="Rewrite" url="/" />
+        </rule>
+      </rules>
+    </rewrite>
+</system.webServer>  
+
+
+2)Add in head-tag:
+
+<base href="/" />
+
+
+3)Add $locationProvider.html5Mode(true) to config according to below:
+
+myAppModule.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+
+        $routeProvider.when('/', { templateUrl: 'Scripts/app/views/default.html' })
+        .when('/bicycles', { templateUrl: 'Scripts/app/views/bicyclesIndex.html', controller: 'BicyclesController' })
+        .when('/bicycles/:bicycleId/edit', { templateUrl: 'Scripts/app/views/bicycleEditor.html', controller: 'BicycleController' })
+         .............
+       
+        $locationProvider.html5Mode(true);
+    }]);
+
+4) Change and remove all '#' from all links in th entire app.

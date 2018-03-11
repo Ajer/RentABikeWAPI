@@ -1,0 +1,41 @@
+﻿<div class="row blue-header">
+    <div class="col-md-12">
+        <h3>Customers</h3>
+    </div>
+</div>
+<div class="row app-header">
+    <div class="col-md-12">
+        <a class="btn btn-primary bicyc" role="button" href="#/customers/new">Add new customer</a>  <!--role=button-->
+    </div>
+</div>
+<div class="row app-header">
+    <div class="col-md-12">
+        &nbsp;
+    </div>
+</div>
+<div class="row app-header">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th><a href="#/customers" ng-click="sorting('id')">Id</a><img id="img_cid" ng-src="{{id_im}}" /></th>
+                    <th><a href="#/customers" ng-click="sorting('firstName')">First Name</a><img id="img_firstName" ng-src="{{firstName_im}}" /></th>
+                    <th><a href="#/customers" ng-click="sorting('lastName')">Last Name</a><img id="img_lastName" ng-src="{{lastName_im}}" /></th>
+                    <th><a href="#/customers" ng-click="sorting('email')">Email</a><img id="img_email" ng-src="{{email_im}}" /></th>
+                    <th><a href="#/customers" ng-click="sorting('phone')">Phone</a><img id="img_phone" ng-src="{{phone_im}}" /></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="no-cond" ng-repeat="customer in customers|orderBy:sortPar:reverse">
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.firstName}}</td>
+                    <td>{{customer.lastName}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td><a class="btn btn-primary btn-edit" href="#/customers/{{customer.id}}/edit" role="button">Edit</a><a class="btn btn-primary btn-del" href="#/customers" ng-click="delete(customer.id)">Del</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
