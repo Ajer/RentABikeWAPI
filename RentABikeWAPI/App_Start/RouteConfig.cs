@@ -16,18 +16,11 @@ namespace RentABikeWAPI.Web
             routes.IgnoreRoute("content/{*pathInfo}");
             routes.IgnoreRoute("Scripts/{*pathInfo}");
 
-            
-
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
-            //routes.IgnoreRoute("api/{*pathInfo}");
-        }
-
-        
+        }     
     }
 }
