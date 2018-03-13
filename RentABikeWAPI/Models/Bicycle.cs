@@ -7,23 +7,27 @@ namespace RentABikeWAPI.Web.Models
 {
     public class Bicycle
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public BicycleTypes type { get; set; }
+        public int BicycleTypeId { get; set; }
 
-        public string typeName
-        {
-            get
-            {
-                return type.ToString().Replace("Bike", " Bike");
-            }
-         
-        }
+        //public string TypeName
+        //{
+        //    get
+        //    {
+        //        return BicycleType.Name.ToString();
+        //    }
 
-        public int quantity { get; set; }
+        //}
 
-        public int rentPrice { get; set; }
+        // public string TypeName { get; set; }
+
+        public int Quantity { get; set; }
+
+        public int RentPrice { get; set; }
+
+        public virtual BicycleType BicycleType { get; set; }
     }
 }

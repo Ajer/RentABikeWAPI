@@ -55,14 +55,17 @@
 
         return {
             getBicycles: function () {
-                $http.get("/api/bicycle").success(function (data) {
-                    return data;
+                $http.get("/api/bicycle").then(function(response) {
+                    return resp;
+                },function(err) {
+                    alert(err);
                 });
-                //return bicycles;
             },
 
             getBicycle: function (bId) {
+
                 var existingBicycle = null;
+
                 angular.forEach(bicycles, function (bicycle) {
                     if (bicycle.id == bId) {
                         existingBicycle = bicycle;

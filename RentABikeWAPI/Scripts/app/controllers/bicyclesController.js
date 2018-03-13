@@ -3,24 +3,42 @@
 
     var myAppModule = angular.module('myApp');
 
-    myAppModule.controller('BicyclesController', ['$scope','$http','$location','bicyclesServices',
-        function ($scope,$http,$location,bicycleServ) {
+    myAppModule.controller('BicyclesController', ['$scope','$http','$location','bicyclesServices','operations',
+        function ($scope,$http,$location,bicycleServ,operations) {
             $scope.sortPar = "'id'";
             $scope.reverse = false;
             $scope.toggleInd = 1;
             $scope.lastSort = "";
             $scope.id_im = $scope.name_im = $scope.typeName_im = $scope.quantity_im = $scope.rentPrice_im = "content/images/nrm.png";
 
-            $http({
-                method: "GET",
-                url: 'api/bicycle'
-            }).success(function (data, status, headers, config) {
-                $scope.bicycles = data;
-            }).error(function(){
-                alert(".....");
-            });  //
 
-            $scope.bicycles = bicycleServ.getBicycles();
+            operations.ReadAll('api/Bicycle').success(function (data) {
+                if (data != null) {
+                    $scope.bicycles = data;
+                    $scope.ok = true;
+                }
+                else {
+                    $scope.ok = false;
+                }
+
+            }).error(function () {
+
+                $scope.ok = false;
+                alert('Error loadData');
+
+            });
+
+            //$http({
+            //    method: "GET",
+            //    url: 'api/bicycle'
+            //}).success(function (data) {
+               
+            //    $scope.bicycles = data;
+            //}).error(function(err) {
+            //    alert(err);
+            //});  
+
+            //$scope.bicycles = bicycleServ.getBicycles();
 
             $scope.delete = function (id) {
                 bicycleServ.deleteBicycle(id);
@@ -85,6 +103,48 @@
 
                 $scope.lastSort = par;
             };
-        }        
+        }
     ]);
+
+    myAppModule.factory('operations',
+        function ($http) {
+            return {
+                Create: function (url, data) {
+                    return $http({
+                        method: 'POST',
+                        url: url,
+                        data: data
+                    });
+                },
+                ReadAll: function (url) {
+                    return $http({
+                        method: 'GET',
+                        contentType: 'application/json',
+                        url: url
+                    });
+                },
+                Read: function (url, parameters) {
+                    return $http({
+                        method: 'GET',
+                        url: url,
+                        contentType: 'application/json',
+                        params: parameters
+                    });
+                },
+                Update: function (url, parameters, data) {
+                    return $http({
+                        method: 'PUT',
+                        url: url,
+                        params: parameters,
+                        data: data
+
+                    });
+                },
+                Delete: function (id) {
+                    return $http.delete(url + id);
+                }
+            }
+        }
+    );
+
 }());

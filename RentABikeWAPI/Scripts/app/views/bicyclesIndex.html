@@ -18,22 +18,23 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th><a href="#/bicycles" ng-click="sorting('id')">Id</a><img id="img_id" ng-src="{{id_im}}" /></th>
-                    <th><a href="#/bicycles" ng-click="sorting('name')">Name</a><img id="img_name" ng-src="{{name_im}}" /></th>
-                    <th><a href="#/bicycles" ng-click="sorting('typeName')">Type</a><img id="img_typeName" ng-src="{{typeName_im}}" /></th>
-                    <th><a href="#/bicycles" ng-click="sorting('quantity')">Quantity</a><img id="img_quantity" ng-src="{{quantity_im}}" /></th>
-                    <th><a href="#/bicycles" ng-click="sorting('rentPrice')">Daily Rent Price</a><img id="img_rentPrice" ng-src="{{rentPrice_im}}" /></th>
+                    <th><a href="#/bicycles" ng-click="sorting('Id')">Id</a><img id="img_id" ng-src="{{id_im}}" /></th>
+                    <th><a href="#/bicycles" ng-click="sorting('Name')">Name</a><img id="img_name" ng-src="{{name_im}}" /></th>
+                    <th><a href="#/bicycles" ng-click="sorting('BicycleTypeId')">Type</a><img id="img_typeName" ng-src="{{typeName_im}}" /></th>
+                    <th><a href="#/bicycles" ng-click="sorting('Quantity')">Quantity</a><img id="img_quantity" ng-src="{{quantity_im}}" /></th>
+                    <th><a href="#/bicycles" ng-click="sorting('RentPrice')">Daily Rent Price</a><img id="img_rentPrice" ng-src="{{rentPrice_im}}" /></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-class="{'dg': bicycle.quantity==0,'okRent':bicycle.quantity>0}" ng-repeat="bicycle in bicycles|orderBy:sortPar:reverse">
-                    <td>{{bicycle.id}}</td>
-                    <td>{{bicycle.name}}</td>
-                    <td>{{bicycle.typeName}}</td>
-                    <td>{{bicycle.quantity}}</td>
-                    <td>{{bicycle.rentPrice|currency}}</td>
-                    <td><a class="btn btn-primary btn-edit" href="#/bicycles/{{bicycle.id}}/edit" role="button">Edit</a><a class="btn btn-primary btn-del" href="#/bicycles" ng-click="delete(bicycle.id)">Del</a></td>
+                <tr ng-class="{'dg': bicycle.Quantity==0,'okRent':bicycle.Quantity>0}" ng-repeat="bicycle in bicycles|orderBy:sortPar:reverse">
+             
+                    <td>{{bicycle.Id}}</td>
+                    <td>{{bicycle.Name}}</td>
+                    <td>{{bicycle.BicycleTypeId}}</td>
+                    <td>{{bicycle.Quantity}}</td>
+                    <td>{{bicycle.RentPrice|currency}}</td>
+                    <td><a class="btn btn-primary btn-edit" href="#/bicycles/{{bicycle.Id}}/edit" role="button">Edit</a><a class="btn btn-primary btn-del" href="#/bicycles" ng-click="delete(bicycle.Id)">Del</a></td>
                 </tr>
             </tbody>
         </table>

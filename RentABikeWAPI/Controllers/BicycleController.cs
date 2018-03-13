@@ -16,6 +16,7 @@ using System.Web.Http.Description;
 using System.Web.Mvc;
 //using System.Web.Mvc;
 using Newtonsoft.Json;
+using RentABikeWAPI.Models;
 using RentABikeWAPI.Web.Models;
 
 namespace RentABikeWAPI.Web.Controllers
@@ -25,7 +26,8 @@ namespace RentABikeWAPI.Web.Controllers
         private BicycleDBContext db = new BicycleDBContext();
 
         // GET api/Bicycle
-        public JsonResult<DbSet<Bicycle>> GetBicycles()   // IQueryable<Bicycle> JsonResult<DbSet<Bicycle>>
+        [System.Web.Mvc.HttpGet]
+        public JsonResult<List<BicycleIndexModel>> GetBicycles()   // IQueryable<Bicycle> JsonResult<DbSet<Bicycle>>
         {
             var j = Request.RequestUri;
             var k = System.Web.HttpContext.Current.Request.UrlReferrer;
@@ -35,8 +37,23 @@ namespace RentABikeWAPI.Web.Controllers
             //var h = new JsonSerializerSettings();
             //HttpContext.Current.Response.ContentType = "application/json";
 
-            return Json(db.Bicycles);
-            //return Ok(db.Bicycles); //db.Bicycles; return base.Json(db.Bicycles);
+            
+            var res = new List<BicycleIndexModel>();
+
+            foreach (var p in db.Bicycles)
+            {
+                var bI = new BicycleIndexModel();
+                bI.Id = p.Id;
+                bI.BicycleTypeId = p.BicycleTypeId;
+                bI.Name = p.Name;
+                bI.Quantity = p.Quantity;
+                bI.RentPrice = p.RentPrice;
+              
+                res.Add(bI);
+            }
+
+            return Json(res);
+            //return db.Bicycles;    // return base.Json(db.Bicycles);
         }
 
         // GET api/Bicycle/5
@@ -60,7 +77,7 @@ namespace RentABikeWAPI.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != bicycle.id)
+            if (id != bicycle.Id)
             {
                 return BadRequest();
             }
@@ -98,7 +115,7 @@ namespace RentABikeWAPI.Web.Controllers
             db.Bicycles.Add(bicycle);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = bicycle.id }, bicycle);
+            return CreatedAtRoute("DefaultApi", new { id = bicycle.Id }, bicycle);
         }
 
         // DELETE api/Bicycle/5
@@ -128,7 +145,7 @@ namespace RentABikeWAPI.Web.Controllers
 
         private bool BicycleExists(int id)
         {
-            return db.Bicycles.Count(e => e.id == id) > 0;
+            return db.Bicycles.Count(e => e.Id == id) > 0;
         }
     }
 }
